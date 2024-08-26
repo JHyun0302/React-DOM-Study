@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom/client";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {HashRouter, Link, NavLink, Route, Routes} from 'react-router-dom';
 
 function Home() {
     return (
@@ -35,9 +35,10 @@ function App() {
         <div>
             <h1>Hello React Router DOM</h1>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/topics">Topics</a></li>
-                <li><a href="/contact">Contact</a></li>
+                {/*NavLink : 개발자 도구 -> class="active" 생김*/}
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/topics">Topics</NavLink></li>
+                <li><NavLink to="/contact">Contact</NavLink></li>
             </ul>
             <Routes>
                 <Route path="/" element={<Home />}/>
@@ -49,7 +50,12 @@ function App() {
     );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<BrowserRouter><App /></BrowserRouter>);
+/**
+ * 웹 서버 설정에 따라 어떤 패스로 들어오든 루트 페이지에 있는 HTML 파일을 서비스 할 수 있다면 BrowserRouter,
+ * 그렇지 않다면 HashRouter.
+ * HashRouter: 주소창에 `#`붙음. 뒤의 내용은 `북마크`라는 뜻!
+ */
+ReactDOM.createRoot(document.getElementById('root')).render(<HashRouter><App /></HashRouter>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
